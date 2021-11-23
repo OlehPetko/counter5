@@ -24,13 +24,22 @@ function App() {
       const updateNewList = [...list].filter(el => el.id !== id)
         setList(updateNewList)
     }
+    const up  = (id) => {
+      const updateDirection = [...list].map(el => el.id === id ? {...el, status: statuses[statuses.indexOf(el.status) - 1]} : el)
+    setList(updateDirection)
+    }
+    const down = (id) => {
+      const updateDirection = [...list].map(el => el.id === id ? {...el, status: statuses[statuses.indexOf(el.status) + 1]} : el)
+   setList(updateDirection)
+    }
+
     return (
         <div className="App">
             <input placeholder='add' value={newList} onChange={event => setNewList(event.target.value)}/>
             <button onClick={() => addList(newList)}>add</button>
             {statuses.map(status =>
                 <div key={status}>
-                    <Panel status={status} list={list} del={del}/>
+                    <Panel status={status} up={up} list={list} del={del} down={down}/>
                 </div>
             )}
 

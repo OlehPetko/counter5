@@ -2,13 +2,13 @@ import './App.css';
 import {useState} from "react";
 
 function List(props) {
-    const {list, del} = props
+    const {list, del, up, down} = props
     const [visible, setVisible] = useState(true)
     return (
         <div className="App">
             {list.name}
-            {list.status !== 'todo' && <button>up</button>}
-            {list.status !== 'done' && <button>down</button>}
+            {list.status !== 'todo' && <button onClick={() => up(list.id)}>up</button>}
+            {list.status !== 'done' && <button onClick={() => down(list.id)}>down</button>}
             <button onClick={() => del(list.id)}>delete</button>
             {visible ? (
 
